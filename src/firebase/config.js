@@ -2,14 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAs8pXyIhFeJTIBt3jsPyFYAtF_xHCYaZ4",
-  authDomain: "shree-shyam-ayurveda.firebaseapp.com",
-  projectId: "shree-shyam-ayurveda",
-  storageBucket: "shree-shyam-ayurveda.firebasestorage.app",
-  messagingSenderId: "437741055226",
-  appId: "1:437741055226:web:e3588b1fd0063cfd5fed43",
-  measurementId: "G-9L3C174JNQ"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
+
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
