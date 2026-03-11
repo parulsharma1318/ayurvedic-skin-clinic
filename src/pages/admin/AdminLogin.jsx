@@ -16,7 +16,7 @@ const AdminLogin = () => {
     try {
       await login(email, password);
       toast.success('Welcome back!');
-      navigate('/admin/dashboard');
+      navigate('/doctor/dashboard');
     } catch (error) {
       toast.error('Invalid credentials. Please try again.');
     }
@@ -37,7 +37,7 @@ const AdminLogin = () => {
             Admin Panel
           </h1>
           <p className="text-sm sm:text-base text-gray-600">
-            AyurSkin Clinic
+            Shree Shyam Ayurveda
           </p>
         </div>
 
