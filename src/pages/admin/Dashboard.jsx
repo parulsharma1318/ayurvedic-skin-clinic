@@ -32,7 +32,7 @@ if (typeof window !== "undefined") {
  useEffect(() => {
 
   if (!user) {
-    navigate('/admin')
+    navigate('/doctor')
     return
   }
 

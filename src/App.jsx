@@ -15,7 +15,7 @@ import { AuthProvider } from './context/AuthContext'
 /* ---------------- Protected Route ---------------- */
 const ProtectedRoute = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('user') || 'null')
-  if (!user) return <Navigate to="/admin" replace />
+  if (!user) return <Navigate to="/doctor" replace />
   return children
 }
 
@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
   const location = useLocation()
 
   // Hide Navbar & Footer on admin pages
-  const isAdminRoute = location.pathname.startsWith('/admin')
+  const isAdminRoute = location.pathname.startsWith('/doctor')
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -61,9 +61,9 @@ function App() {
             <Route path="/contact" element={<Contact />} />
 
             {/* Admin Routes */}
-            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/doctor" element={<AdminLogin />} />
             <Route
-              path="/admin/dashboard"
+              path="/doctor/dashboard"
               element={
                 <ProtectedRoute>
                   <Dashboard />

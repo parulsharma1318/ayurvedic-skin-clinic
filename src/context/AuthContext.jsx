@@ -25,16 +25,23 @@ export const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  const login = async (email, password) => {
-    // TEMP admin credentials (replace with backend later)
-    if (email === 'admin@ayurskin.com' && password === 'admin123') {
-      const userData = { email, role: 'admin' }
-      localStorage.setItem('user', JSON.stringify(userData))
-      setUser(userData)
-      return userData
-    }
-    throw new Error('Invalid credentials')
+const login = async (email, password) => {
+
+  const adminEmail = import.meta.env.VITE_DOCTOR_EMAIL
+  const adminPassword = import.meta.env.VITE_DOCTOR_PASSWORD
+
+  if (email === adminEmail && password === adminPassword) {
+
+    const userData = { email, role: 'doctor' }
+
+    localStorage.setItem('user', JSON.stringify(userData))
+    setUser(userData)
+
+    return true
   }
+
+  throw new Error('Invalid credentials')
+}
 
   const logout = async () => {
     localStorage.removeItem('user')
