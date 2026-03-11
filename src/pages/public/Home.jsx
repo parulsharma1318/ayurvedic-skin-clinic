@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FiArrowRight, FiCheckCircle, FiStar } from 'react-icons/fi'
 import { motion } from 'framer-motion'
-import heroImg from '../../assets/images/hero.jpg'
+import heroImg from '../../assets/images/Hero.jpg'
 
 const problems = [
   { name: 'Psoriasis', icon: '🔴', description: 'Natural healing with herbal therapies' },
