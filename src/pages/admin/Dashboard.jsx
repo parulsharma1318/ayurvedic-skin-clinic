@@ -18,12 +18,16 @@ import {
 } from 'react-icons/fi'
 
 const Dashboard = () => {
-  const notificationSound = new Audio("/notification.mp3")
   const [appointments, setAppointments] = useState([])
   const [selectedAppointment, setSelectedAppointment] = useState(null)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  let notificationSound
+
+if (typeof window !== "undefined") {
+  notificationSound = new Audio("/notification.mp3")
+}
 
  useEffect(() => {
 
