@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------- BASE STYLES ---------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-gray-700 bg-white overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-gray-800;
+  }
+}
+
+/* ---------------- COMPONENT UTILITIES ---------------- */
+@layer components {
+
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-ayurveda-green text-white
+           px-5 py-2.5 sm:px-6 sm:py-3
+           rounded-lg font-medium
+           hover:bg-ayurveda-dark
+           transition-all duration-300
+           shadow-md hover:shadow-xl
+           transform hover:-translate-y-0.5
+           text-sm sm:text-base;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply border-2 border-ayurveda-green text-ayurveda-green
+           px-5 py-2.5 sm:px-6 sm:py-3
+           rounded-lg font-medium
+           hover:bg-ayurveda-green hover:text-white
+           transition-all duration-300
+           text-sm sm:text-base;
+  }
+
+  /* Section spacing (mobile → desktop) */
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20
+           px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Global container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
