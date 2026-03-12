@@ -14,12 +14,8 @@ import { AuthProvider } from './context/AuthContext'
 
 /* ---------------- Protected Route ---------------- */
 const ProtectedRoute = ({ children }) => {
-  const storedUser = localStorage.getItem("user")
-
-  if (!storedUser) {
-    return <Navigate to="/doctor" replace />
-  }
-
+  const user = JSON.parse(localStorage.getItem('user') || 'null')
+  if (!user) return <Navigate to="/doctor" replace />
   return children
 }
 

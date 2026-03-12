@@ -21,7 +21,7 @@ const Dashboard = () => {
   const [appointments, setAppointments] = useState([])
   const [selectedAppointment, setSelectedAppointment] = useState(null)
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { user, logout } = useAuth()
+  const { user, logout, loading } = useAuth()
   const navigate = useNavigate()
   let notificationSound
 
@@ -29,7 +29,9 @@ if (typeof window !== "undefined") {
   notificationSound = new Audio("/notification.mp3")
 }
 
- useEffect(() => {
+useEffect(() => {
+
+  if (loading) return
 
   if (!user) {
     navigate('/doctor')
@@ -41,34 +43,34 @@ if (typeof window !== "undefined") {
     orderBy("createdAt", "desc")
   )
 
-let firstLoad = true
+  let firstLoad = true
 
-const unsubscribe = onSnapshot(q, (snapshot) => {
+  const unsubscribe = onSnapshot(q, (snapshot) => {
 
-  const data = snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }))
+    const data = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
 
-  if (!firstLoad && data.length > appointments.length) {
-    toast.success("New Appointment Received!")
-    notificationSound.play()
-  }
+    if (!firstLoad && data.length > appointments.length) {
+      toast.success("New Appointment Received!")
+      notificationSound.play()
+    }
 
-  firstLoad = false
+    firstLoad = false
 
-  setAppointments(data)
+    setAppointments(data)
 
-})
+  })
 
   return () => unsubscribe()
 
-}, [user, navigate])
+}, [user, loading, navigate])
 
   const handleLogout = async () => {
     try {
       await logout()
-      navigate('/admin')
+      navigate('/doctor')
     } catch {
       toast.error('Logout failed')
     }
@@ -134,7 +136,7 @@ const deleteAppointment = async (id) => {
 
           <nav className="space-y-3">
             <Link
-              to="/admin/dashboard"
+              to="/doctor/dashboard"
               className="block bg-ayurveda-green text-white px-4 py-2 rounded-lg"
             >
               Dashboard

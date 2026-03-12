@@ -44,7 +44,7 @@ const login = async (email, password) => {
   throw new Error('Invalid credentials')
 }
 
-  const logout = async () => {
+  const logout = () => {
     localStorage.removeItem('user')
     setUser(null)
   }
