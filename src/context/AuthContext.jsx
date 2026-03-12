@@ -11,19 +11,20 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   // Load user from localStorage on app start
-  useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem('user')
-      if (storedUser) {
-        setUser(JSON.parse(storedUser))
-      }
-    } catch (err) {
-      console.error('Failed to parse user')
-      localStorage.removeItem('user')
-    } finally {
-      setLoading(false)
+useEffect(() => {
+  try {
+    const storedUser = localStorage.getItem('user')
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser))
     }
-  }, [])
+  } catch (err) {
+    console.error("Failed to parse user")
+    localStorage.removeItem("user")
+  } finally {
+    setLoading(false)
+  }
+}, [])
 
 const login = async (email, password) => {
 
