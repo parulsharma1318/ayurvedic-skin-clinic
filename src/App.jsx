@@ -14,8 +14,14 @@ import { AuthProvider } from './context/AuthContext'
 
 /* ---------------- Protected Route ---------------- */
 const ProtectedRoute = ({ children }) => {
-  const user = JSON.parse(localStorage.getItem('user') || 'null')
-  if (!user) return <Navigate to="/doctor" replace />
+  const { user, loading } = useAuth()
+
+  if (loading) return null
+
+  if (!user) {
+    return <Navigate to="/doctor" />
+  }
+
   return children
 }
 
